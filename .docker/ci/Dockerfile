@@ -1,7 +1,7 @@
-# moveit/moveit:noetic-ci
+# moveit/moveit:master-ci
 # Sets up a base image to use for running Continuous Integration on Travis
 
-FROM ros:noetic-ros-base
+FROM ros:melodic-ros-base
 MAINTAINER Dave Coleman dave@picknik.ai
 
 ENV TERM xterm
@@ -18,15 +18,15 @@ RUN \
     #
     # Install some base dependencies
     apt-get -qq install --no-install-recommends -y \
-        # Some basic requirements
-        wget git sudo \
-        # Preferred build tools
-        python3-catkin-tools python3-osrf-pycommon \
-        clang clang-format-10 clang-tidy clang-tools \
-        ccache && \
+    # Some basic requirements
+    wget git sudo \
+    # Preferred build tools
+    python-catkin-tools \
+    clang clang-format-10 clang-tidy clang-tools \
+    ccache && \
     #
     # Download MoveIt source, so that we can fetch all necessary dependencies
-    wstool init --shallow src https://raw.githubusercontent.com/ros-planning/moveit/${ROS_DISTRO}-devel/moveit.rosinstall && \
+    wstool init --shallow src https://raw.githubusercontent.com/ros-planning/moveit/noetic-devel/moveit.rosinstall && \
     #
     # Download all dependencies of MoveIt
     rosdep update && \
