@@ -47,14 +47,8 @@ else()
 endif()
 
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBFCL_PC REQUIRED fcl)
-set(LIBFCL_INCLUDE_DIRS ${LIBFCL_PC_INCLUDE_DIRS})
-# find *absolute* paths to LIBFCL_LIBRARIES
-set(LIBFCL_LIBRARIES)
-foreach(_lib ${LIBFCL_PC_LIBRARIES})
-  find_library(_lib_${_lib} ${_lib} HINTS ${LIBFCL_PC_LIBRARY_DIRS})
-  list(APPEND LIBFCL_LIBRARIES ${_lib_${_lib}})
-endforeach()
+find_package(fcl REQUIRED)
+set(LIBFCL_LIBRARIES "fcl")
 
 find_package(octomap REQUIRED)
 find_package(urdfdom REQUIRED)
@@ -168,7 +162,7 @@ catkin_package(
   DEPENDS
     Boost
     EIGEN3
-    LIBFCL
+    fcl
     OCTOMAP
     urdfdom
     urdfdom_headers
@@ -180,7 +174,6 @@ include_directories(SYSTEM ${catkin_INCLUDE_DIRS}
                            ${EIGEN3_INCLUDE_DIRS}
                            ${urdfdom_INCLUDE_DIRS}
                            ${urdfdom_headers_INCLUDE_DIRS}
-                           ${LIBFCL_INCLUDE_DIRS}
                            ${BULLET_INCLUDE_DIRS}
                            ${OCTOMAP_INCLUDE_DIRS}
                     )
