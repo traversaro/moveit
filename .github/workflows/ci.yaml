@@ -10,6 +10,7 @@ on:
     branches:
       - master
       - "[kmn]*-devel"
+      - gen_headers
 
 jobs:
   default:
