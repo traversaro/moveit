@@ -9,6 +9,7 @@ if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   target_compile_options(${MOVEIT_LIB_NAME} PRIVATE -Wno-deprecated-declarations)
 endif()
 
+include(GenerateExportHeader)
 generate_export_header(${MOVEIT_LIB_NAME})
 
 # This line is needed to ensure that messages are done being built before this is built

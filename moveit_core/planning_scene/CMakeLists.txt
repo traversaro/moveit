@@ -2,6 +2,8 @@ set(MOVEIT_LIB_NAME moveit_planning_scene)
 
 add_library(${MOVEIT_LIB_NAME} src/planning_scene.cpp)
 set_target_properties(${MOVEIT_LIB_NAME} PROPERTIES VERSION "${${PROJECT_NAME}_VERSION}")
+
+include(GenerateExportHeader)
 generate_export_header(${MOVEIT_LIB_NAME})
 
 target_link_libraries(${MOVEIT_LIB_NAME}
