@@ -5,6 +5,7 @@ set_target_properties(${MOVEIT_LIB_NAME} PROPERTIES VERSION "${${PROJECT_NAME}_V
 
 include(GenerateExportHeader)
 generate_export_header(${MOVEIT_LIB_NAME})
+target_include_directories(${MOVEIT_LIB_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
 
 target_link_libraries(${MOVEIT_LIB_NAME}
   moveit_robot_model
